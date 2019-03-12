@@ -30,6 +30,7 @@ $(document).ready(function () {
 
                 $("#concertSchedule").html("<em>" + "TicketMaster currently does not have any event information for " + artist + ".</em>");
 
+
             }
         }
     });
