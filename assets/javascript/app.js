@@ -41,6 +41,45 @@ $(document).ready(function(){
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// finding user location
+
+
   
 =======
 
