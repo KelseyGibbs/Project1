@@ -1,11 +1,58 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Random Event</title>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Link CSS-->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+        <div class="col s12"><h1>TITLE OF APP</h1></div>
+
+
+
 </div>
 
-<div class="row">
-        <div class="col s12" id="userInput">
-                <input type="text" class="datepicker">
+<form>
+        <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">City: </label>
+                    <input type="text" class="form-control" id="inputCity" placeholder="City, ST">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputDate">Date: </label>
+                    <input type="text" class="form-control" id="inputDate" placeholder="mm/dd/yy">
+                </div>
         </div>
-</div>
+
+        <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="choosePrice">State</label>
+                    <select id="choosePrice" class="form-control">
+                        <option>Price 1</option>
+                        <option>Price 2</option>
+                        <option>Price 3</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputGenre">Genre: </label>
+                    <input type="text" class="form-control" id="inputGenre">
+                </div>
+        </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 
 <div class="row">
         <div class="col s6" id="spotifyData"><h3>Spotify Information</h3></div>
@@ -13,10 +60,19 @@
 </div>
 
 
-<!--Link Javascript from Materialize-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
 <!--Link Javascript file-->  
 <script src="assets/javascript/app.js"></script>
+
+<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<!--Link Javascript from Bootstrap-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Document</title>
@@ -43,6 +99,7 @@
 <div class="row">
         <div class="col s12"><h1>TITLE OF APP</h1></div>
     <script src="assets/javascript/app.js"></script>
+
 
 </body>
 </html>
