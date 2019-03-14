@@ -1,5 +1,21 @@
 var globalArtist;
+var ticketSearch;
+function searchDate() {
+    var timeStamp = moment().format("YYYY-MM-DD[T]HH:mm:[00Z]");
+            console.log(timeStamp);
+    
+    var searchDate = moment().add(1, "days").format("YYYY-MM-DD[T]HH:mm:[00Z]");
+            console.log(searchDate);
+
+    ticketSearch = "&startDateTime=" + timeStamp + "&endDateTime=" + searchDate;
+            console.log(ticketSearch);
+        };
+
+searchDate();
+
 $(document).ready(function () {
+
+    
     // When the submit button is clicked, prevent default and...
     $(".btn").on("click", function (event) {
         event.preventDefault();
@@ -18,10 +34,9 @@ $(document).ready(function () {
 
 
         var queryURL = "http://app.ticketmaster.com/discovery/v2/events.json?apikey=rbzvFPQuTHwPs9wYmrP99BX332WdMatP" +
-            // "&city=nashville" +
-            // "&countyCode=US&classificationName=music" +
-            // "&sort=relevance,asc" + 
-            "&keyword=" + genreInput;
+            "&classificationName=music" +
+            "&city=" + cityInput +
+            "&keyword=" + genreInput + ticketSearch;
 
         console.log(queryURL)
 
@@ -37,9 +52,23 @@ $(document).ready(function () {
 
 
                     for (var i = 0; i < 5; i++) {
-                        globalArtist = (response._embedded.events[i].name);
+                        globalArtist = (response._embedded.events[0].name);
+                        console.log(response._embedded.events[i]);
                         console.log(globalArtist+ "im not global");
+                        var emptyDiv = $("<div class='ticketmaster'>")
+                        var ticketName = $("<h3 class='title'>").text(response._embedded.events[0].name); 
+                        var ticketText = (response._embedded.events[0].start.dateTime);
 
+                        
+
+                        
+
+
+
+                        emptyDiv.append(ticketName);
+                        emptyDiv.append(ticketText);
+                    
+                        $("#ticketmasterData").html(emptyDiv);
                     }
 
 
@@ -79,8 +108,6 @@ $(document).ready(function () {
 
 
     function makeSecondCall (globalArtist){
-        console.log(globalArtist);
-        globalArtist = "madonna";
         $.ajax({
             type: 'POST',
             url: 'http://ws.audioscrobbler.com/2.0/',
