@@ -113,7 +113,6 @@ $(document).ready(function () {
 
 
 // finding user location
-
 var queryLocationURL = {
     "async": true,
     "crossDomain": true,
