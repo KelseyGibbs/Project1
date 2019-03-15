@@ -15,10 +15,15 @@ searchDate();
 
 $(document).ready(function () {
 
+    $("#ticketButton").hide();
+
 
     // When the submit button is clicked, prevent default and...
     $(".btn").on("click", function (event) {
         event.preventDefault();
+
+        $("#ticketButton").show();
+        
         console.log("hey");
 
         // Get the value of the user inputs
@@ -190,3 +195,7 @@ function makeSecondCall(globalArtist) {
 
     //
 }
+
+$("#ticketButton").on("click", function (event){
+    location.href = ticketURL;
+})
