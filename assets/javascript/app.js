@@ -124,7 +124,7 @@ function makeSecondCall(artistSearch) {
             'format=json',
         dataType: 'jsonp',    
         success: function (data) {
-            console.log("data from api", data.artist.tags.tag[0].name)
+            console.log("data from api", data)
             // Handle success code here
             var response = data.data;
             console.log(response);
@@ -146,8 +146,11 @@ function makeSecondCall(artistSearch) {
             var ArtistImage = $("<img>");
             ArtistImage.attr("src", data.artist.image[3]["#text"]);
 
+            var Bio = $("<p>").text(data.artist.bio.summary);
+            console.log("am i getting data",Bio)
+
             var p = $("<p>").text(data.artist.tags.tag[0].name);
-            $("#spotifyData").html(name, ArtistImage, p);
+            $("#spotifyData").html(name, ArtistImage, p, Bio);
         }    
 
     });    
@@ -164,8 +167,10 @@ function makeSecondCall(artistSearch) {
         dataType: 'jsonp',    
         success: function (data) {
             console.log("data from api", data.toptracks.track[0].name);
+            for(var i = 0; i < 4; i++){
             var topTracks = $("<p>").text(data.toptracks.track[0].name);
             $("#spotifyData").append(data.toptracks.track[0].name);
+            }
         }    
     })    
 
