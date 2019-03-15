@@ -1,3 +1,52 @@
-h1 {
+html, body {
+    height: 100%;
+}
+
+.container {
+    padding-top: 100px;
+}
+
+.bgimg {
+    background-image: url(../images/concert_crowd1.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    position: relative;
+    opacity: 0.70;
+}
+
+
+form {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+label{
+    color: white;
+    text-shadow: 3px 2px black;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.form-group {
+    padding-left: 80px;
+}
+
+.btn {
+    background-color: #F26419;
+    border: none;
+    text-shadow: 3px 2px black;
+    color: white;
     text-align: center;
+    text-decoration: none;
+}
+
+#lastFMData {
+    background-color: white;
+
+}
+
+#ticketmasterData {
+    background-color: white;
+
 }

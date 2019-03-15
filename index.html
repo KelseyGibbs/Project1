@@ -1,88 +1,86 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Random Event</title>
+    <title>Viola - Event Search</title>
 
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Link CSS-->
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!--Font Awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="container">
-<div class="row">
-        <div class="col s12"><h1>TITLE OF APP</h1></div>
+    <div class="bgimg">
+    <div class="container">
 
+        <form>
+            <div class="row d-flex justify-content-center">
+                    <div class="col-lg-2">
+                            <div id="logo"><img src="assets/images/violalogo_white.PNG"></div>
+                    </div>
+                <div class="form-group col-lg-7">
+                        <label for="inputCity">City: </label>
+                        <input type="text" class="form-control" id="inputCity" placeholder=" ">
 
-
-</div>
-
-<form>
-        <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputCity">City: </label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="City, ST">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-location-arrow"></i> find me</button>
+                        <label for="inputGenre">Genre: </label>
+                        <input type="text" class="form-control" id="inputGenre" placeholder=" ">
+                        <div class="d-flex justify-content-end"> 
+                                <button type="submit" class="btn">Submit</button>
+                        </div>
                 </div>
+            </div>
+        </form>
 
-                <div class="form-group col-md-6">
-                    <label for="inputDate">Date: </label>
-                    <input type="text" class="form-control" id="inputDate" placeholder="mm/dd/yy">
-                </div>
+
+        <div class="row">
+            <div class="col s6" id="lastFMData">
+                <h3>LastFM Information (this is temporary)</h3>
+            </div>
+            <div class="col s6" id="ticketmasterData">
+                <h3>Ticketmaster Information (this is temporary</h3>
+                <input type="image" src="assets/images/contact.png" id="ticketButton">
+            </div>
         </div>
-
-        <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="choosePrice">How much are you willing to spend?</label>
-                    <input type="number" class="form-control"
-                    id="choosePrice" placeholder="$$$">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputGenre">Genre: </label>
-                    <input type="text" class="form-control" id="inputGenre" placeholder=" ">
-                </div>
-        </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    </div>
+    </div>
 
 
-<div class="row">
-        <div class="col s6" id="spotifyData"><h3>Spotify Information</h3></div>
-        <div class="col s6" id="ticketmasterData"><h3>Ticketmaster Information</h3></div>
-</div>
+        <!--Link Javascript file-->
+
+        <script src="http://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <!--Link Javascript from Bootstrap-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
 
 
 
-<!--Link Javascript file-->  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+        <script src="assets/javascript/app.js"></script>
+        <title>Document</title>
+        </head>
 
-<script
-src="http://code.jquery.com/jquery-3.3.1.js"
-integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-crossorigin="anonymous"></script>
-<!--Link Javascript from Bootstrap-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-<script src="assets/javascript/app.js"></script>
-    <title>Document</title>
-</head>
-<body>
-    
+        <body>
 
 
 
@@ -98,7 +96,8 @@ crossorigin="anonymous"></script>
 
 
 
-<!--locating user code-->
+
+            <!--locating user code-->
 
 
 
@@ -106,5 +105,6 @@ crossorigin="anonymous"></script>
 
 
 
-</body>
+        </body>
+
 </html>
