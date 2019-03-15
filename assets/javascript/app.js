@@ -58,7 +58,7 @@ $(document).ready(function () {
                     }
 
 
-                    fixArtist(globalArtist);
+                    myFunction(globalArtist);
 
 
                 } else {
@@ -77,20 +77,13 @@ $(document).ready(function () {
                  
 });
 
-function fixArtist(globalArtist) {
 
-    if (globalArtist === ":"){
-        console.log("yes");
-
-    } 
-}
-
-function anotherOne(globalArtist){
-    var s = globalArtist;
-    var n = s.indexOf(':');
-    s = s.substring(0, n != -1 ? n : s.length);
-    document.write(s);
-}
+// function anotherOne(globalArtist){
+//     var s = globalArtist;
+//     var n = s.indexOf(':');
+//     s = s.substring(0, n != -1 ? n : s.length);
+//     document.write(s);
+// }
 
 //function to manipulate ticketmaster artist for lastFM API
 var str = "";
@@ -111,19 +104,18 @@ function myFunction2() {
     artistSearch = res[0].split(" ").join("+");
     console.log(artistSearch);
     makeSecondCall(artistSearch);
-    return (artistSearch);
 }
 
 
 
 function makeSecondCall(artistSearch) {
     artist = artistSearch;
-    console.log(artist + "artist")
+    console.log(artist + "hiiiiiii")
     $.ajax({
         type: 'POST',
         url: 'http://ws.audioscrobbler.com/2.0/',
         data: 'method=artist.getinfo&' +
-            'artist=' + artist +
+            "artist=" + artist +
             '&getTopTags&' +
             'getTopTracks&' +
             'api_key=a365207bc395cbad8267b11acaca3263&' +
@@ -135,12 +127,12 @@ function makeSecondCall(artistSearch) {
             var response = data.data;
             console.log(response);
             for (i = 0; i < data.length; i++) {
-
+                console.log(artist + "artist is here ")
                 var DataDiv = $("<div>");
 
 
                 console.log("making sure this works", results[i].images.fixed_width_still.url);
-                $("#spotifyData").html(data.artist.name)
+                $("#lastFMData").append(response.artist.name);
                 ArtistImage.attr(data.image[0])
 
                 DataDiv.append(p);
@@ -156,26 +148,27 @@ function makeSecondCall(artistSearch) {
             console.log("am i getting data",Bio)
 
             var p = $("<p>").text(data.artist.tags.tag[0].name);
-            $("#spotifyData").html(name, ArtistImage, p, Bio);
+            $("#lastFMData").append(name, ArtistImage, p, Bio);
         }    
 
     });    
+
     console.log(artist + " are we here?");
     $.ajax({
         type: 'POST',
         url: 'http://ws.audioscrobbler.com/2.0/',
         data: 'method=artist.gettoptracks&' +
             'artist=' + artist +
-            'getTopTags&' +
+            '&getTopTags&' +
             'getTopTracks&' +
             'api_key=a365207bc395cbad8267b11acaca3263&' +
             'format=json',
         dataType: 'jsonp',    
         success: function (data) {
-            console.log("data from api", data.toptracks.track[i].name);
             for(var i = 0; i < 4; i++){
+                console.log(data);
             var topTracks = $("<p>").text(data.toptracks.track[i].name);
-            $("#spotifyData").append(data.toptracks.track[i].name);
+            $("#lastFMData").append(data.toptracks.track[i].name);
             }
         }    
     })    
