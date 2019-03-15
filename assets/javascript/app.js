@@ -1,14 +1,10 @@
 var globalArtist;
 var ticketSearch;
+
 function searchDate() {
     var timeStamp = moment().format("YYYY-MM-DD[T]HH:mm:[00Z]");
-    console.log(timeStamp);
-
     var searchDate = moment().add(1, "days").format("YYYY-MM-DD[T]HH:mm:[00Z]");
-    console.log(searchDate);
-
     ticketSearch = "&startDateTime=" + timeStamp + "&endDateTime=" + searchDate;
-    console.log(ticketSearch);
 };
 
 searchDate();
@@ -22,9 +18,11 @@ $(document).ready(function () {
     $(".btn").on("click", function (event) {
         event.preventDefault();
 
+
         $("#ticketButton").show();
         
         console.log("hey");
+
 
         // Get the value of the user inputs
         var dateInput = $("#inputDate").val().trim();
@@ -32,11 +30,7 @@ $(document).ready(function () {
         var priceInput = $("#choosePrice").val();
         var cityInput = $("#inputCity").val().trim();
 
-        console.log(priceInput);
         priceRange = "0," + priceInput;
-        console.log(priceRange);
-
-
 
         var queryURL = "http://app.ticketmaster.com/discovery/v2/events.json?apikey=rbzvFPQuTHwPs9wYmrP99BX332WdMatP" +
             "&classificationName=music" +
@@ -62,7 +56,8 @@ $(document).ready(function () {
                         console.log(globalArtist + "im not global");
                         var emptyDiv = $("<div class='ticketmaster'>")
                         var ticketName = $("<h3 class='title'>").text(response._embedded.events[0].name);
-                        // var ticketText = (response._embedded.events[0].start.dateTime);
+                        var ticketURL = (response._embedded.events[0].url);
+                        var ticketText = (response._embedded.events[0].sales.public.startDateTime);
 
 
 
@@ -71,13 +66,15 @@ $(document).ready(function () {
 
 
                         emptyDiv.append(ticketName);
-                        // emptyDiv.append(ticketText);
+                        emptyDiv.append(ticketText);
+                        emptyDiv.append(ticketURL);
 
                         $("#ticketmasterData").html(emptyDiv);
+                       
                     }
 
 
-                    makeSecondCall(globalArtist);
+                    myFunction(globalArtist);
 
 
                 } else {
@@ -89,43 +86,56 @@ $(document).ready(function () {
 
                 }
             }
-        });
+        });    
 
-
-
-
-
-
-
-
-    })
-
+    })    
+    
     //document.ready closing tag               
-});
+});    
+
+
+//function to manipulate ticketmaster artist for lastFM API
+var str = "";
+var res = "";
+var artistSearch = "";
+var artist;
+
+function myFunction(globalArtist) {
+    str = globalArtist;
+    console.log(globalArtist + "I'm global");
+    res = str.split(" , ", 1);
+    console.log(res + "res");
+    myFunction2();
+}
+
+function myFunction2() {
+
+    artistSearch = res[0].split(" ").join("+");
+    console.log(artistSearch);
+    makeSecondCall(artistSearch);
+    return(artistSearch);
+}
 
 
 
-
-
-
-
-
-
-function makeSecondCall(globalArtist) {
+function makeSecondCall(artistSearch) {
+    artist = artistSearch;
+    console.log(artist + "artist")
     $.ajax({
         type: 'POST',
         url: 'http://ws.audioscrobbler.com/2.0/',
         data: 'method=artist.getinfo&' +
-            'artist=' + globalArtist +
+            'artist=' + artist +
             '&getTopTags&' +
             'getTopTracks&' +
             'api_key=a365207bc395cbad8267b11acaca3263&' +
             'format=json',
-        dataType: 'jsonp',
+        dataType: 'jsonp',    
         success: function (data) {
-            console.log("data from api", data.artist.tags.tag[0].name)
+            console.log("data from api", data)
             // Handle success code here
             var response = data.data;
+            console.log(response);
             for (i = 0; i < data.length; i++) {
 
                 var DataDiv = $("<div>");
@@ -138,60 +148,39 @@ function makeSecondCall(globalArtist) {
                 DataDiv.append(p);
                 DataDiv.append(ArtistImage);
 
-            }
+            }    
             var name = $("<h1>").text(data.artist.name);
 
             var ArtistImage = $("<img>");
             ArtistImage.attr("src", data.artist.image[3]["#text"]);
 
-            var p = $("<p>").text(data.artist.tags.tag[0].name);
-            $("#spotifyData").append(name, ArtistImage, p);
-        }
+            var Bio = $("<p>").text(data.artist.bio.summary);
+            console.log("am i getting data",Bio)
 
-    });
-    console.log(globalArtist + " are we here?");
+            var p = $("<p>").text(data.artist.tags.tag[0].name);
+            $("#spotifyData").html(name, ArtistImage, p, Bio);
+        }    
+
+    });    
+    console.log(artist + " are we here?");
     $.ajax({
         type: 'POST',
         url: 'http://ws.audioscrobbler.com/2.0/',
         data: 'method=artist.gettoptracks&' +
-            'artist=' + globalArtist +
+            'artist=' + artist +
             'getTopTags&' +
             'getTopTracks&' +
             'api_key=a365207bc395cbad8267b11acaca3263&' +
             'format=json',
-        dataType: 'jsonp',
+        dataType: 'jsonp',    
         success: function (data) {
             console.log("data from api", data.toptracks.track[0].name);
+            for(var i = 0; i < 4; i++){
             var topTracks = $("<p>").text(data.toptracks.track[0].name);
             $("#spotifyData").append(data.toptracks.track[0].name);
-        }
-    })
-
-    //function to manipulate ticketmaster artist for lastFM API
-    var str = "";
-    var res = "";
-    var artistSearch = "";
-
-    function myFunction(globalArtist) {
-        str = globalArtist;
-        console.log(globalArtist);
-        res = str.split(" , ", 1);
-    }
-
-    myFunction();
-    console.log(res);
-
-    function myFunction2() {
-
-        artistSearch = res[0].split(" ").join("+");
-        console.log(artistSearch);
-    }
-
-    myFunction2();
-    console.log(artistSearch);
-
-
-
+            }
+        }    
+    })    
 
     //
 }
@@ -199,3 +188,6 @@ function makeSecondCall(globalArtist) {
 $("#ticketButton").on("click", function (event){
     location.href = ticketURL;
 })
+=======
+}
+
