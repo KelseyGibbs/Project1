@@ -20,12 +20,8 @@ $(document).ready(function () {
         $("#ticketButton").show();
         
         // Get the value of the user inputs
-        var dateInput = $("#inputDate").val().trim();
         var genreInput = $("#inputGenre").val().trim();
-        var priceInput = $("#choosePrice").val();
         var cityInput = $("#inputCity").val().trim();
-
-        priceRange = "0," + priceInput;
 
         var queryURL = "http://app.ticketmaster.com/discovery/v2/events.json?apikey=rbzvFPQuTHwPs9wYmrP99BX332WdMatP" +
             "&classificationName=music" +
