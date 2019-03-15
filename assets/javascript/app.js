@@ -1,5 +1,6 @@
 var globalArtist;
 var ticketSearch;
+var ticketURL;
 
 function searchDate() {
     var timeStamp = moment().format("YYYY-MM-DD[T]HH:mm:[00Z]");
@@ -10,20 +11,14 @@ function searchDate() {
 searchDate();
 
 $(document).ready(function () {
-
+    
     $("#ticketButton").hide();
-
-
+    
     // When the submit button is clicked, prevent default and...
     $(".btn").on("click", function (event) {
         event.preventDefault();
-
-
         $("#ticketButton").show();
         
-        console.log("hey");
-
-
         // Get the value of the user inputs
         var dateInput = $("#inputDate").val().trim();
         var genreInput = $("#inputGenre").val().trim();
@@ -56,25 +51,18 @@ $(document).ready(function () {
                         console.log(globalArtist + "im not global");
                         var emptyDiv = $("<div class='ticketmaster'>")
                         var ticketName = $("<h3 class='title'>").text(response._embedded.events[0].name);
-                        var ticketURL = (response._embedded.events[0].url);
+                        ticketURL = (response._embedded.events[0].url);
                         var ticketText = (response._embedded.events[0].sales.public.startDateTime);
-
-
-
-
-
-
-
                         emptyDiv.append(ticketName);
                         emptyDiv.append(ticketText);
                         emptyDiv.append(ticketURL);
 
                         $("#ticketmasterData").html(emptyDiv);
-                       
+                        
                     }
 
 
-                    myFunction(globalArtist);
+                    fixArtist(globalArtist);
 
 
                 } else {
@@ -86,13 +74,27 @@ $(document).ready(function () {
 
                 }
             }
-        });    
+        });
 
-    })    
-    
-    //document.ready closing tag               
-});    
+    })
 
+                 
+});
+
+function fixArtist(globalArtist) {
+
+    if (globalArtist === ":"){
+        console.log("yes");
+
+    } 
+}
+
+function anotherOne(globalArtist){
+    var s = globalArtist;
+    var n = s.indexOf(':');
+    s = s.substring(0, n != -1 ? n : s.length);
+    document.write(s);
+}
 
 //function to manipulate ticketmaster artist for lastFM API
 var str = "";
@@ -113,7 +115,7 @@ function myFunction2() {
     artistSearch = res[0].split(" ").join("+");
     console.log(artistSearch);
     makeSecondCall(artistSearch);
-    return(artistSearch);
+    return (artistSearch);
 }
 
 
@@ -174,20 +176,17 @@ function makeSecondCall(artistSearch) {
             'format=json',
         dataType: 'jsonp',    
         success: function (data) {
-            console.log("data from api", data.toptracks.track[0].name);
+            console.log("data from api", data.toptracks.track[i].name);
             for(var i = 0; i < 4; i++){
-            var topTracks = $("<p>").text(data.toptracks.track[0].name);
-            $("#spotifyData").append(data.toptracks.track[0].name);
+            var topTracks = $("<p>").text(data.toptracks.track[i].name);
+            $("#spotifyData").append(data.toptracks.track[i].name);
             }
         }    
     })    
 
-    //
 }
+
 
 $("#ticketButton").on("click", function (event){
     location.href = ticketURL;
 })
-=======
-}
-
