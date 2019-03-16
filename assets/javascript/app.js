@@ -46,12 +46,12 @@ $(document).ready(function () {
                         console.log(response._embedded.events[i]);
                         console.log(globalArtist + "im not global");
                         var emptyDiv = $("<div class='ticketmaster'>")
-                        var ticketName = $("<h3 class='title'>").text(response._embedded.events[0].name);
+                        var ticketName = $("<h1 class='title'>").text(response._embedded.events[0].name);
                         ticketURL = (response._embedded.events[0].url);
                         var ticketText = (response._embedded.events[0].sales.public.startDateTime);
                         emptyDiv.append(ticketName);
-                        emptyDiv.append(ticketText);
-                        emptyDiv.append(ticketURL);
+                        emptyDiv.append("<p id='date'> Event Date: " + moment().format("dddd, MMMM Do YYYY</p>" ));
+                        // emptyDiv.append(ticketURL);
 
                         $("#ticketmasterData").html(emptyDiv);
                         
@@ -129,26 +129,27 @@ function makeSecondCall(artistSearch) {
             for (i = 0; i < data.length; i++) {
                 console.log(artist + "artist is here ")
                 var DataDiv = $("<div>");
+                
 
 
                 console.log("making sure this works", results[i].images.fixed_width_still.url);
                 $("#lastFMData").append(response.artist.name);
-                ArtistImage.attr(data.image[0])
+                ArtistImage.attr(data.image[0]);
 
                 DataDiv.append(p);
                 DataDiv.append(ArtistImage);
 
             }    
-            var name = $("<h1>").text(data.artist.name);
+            // var name = $("<h1>").text(data.artist.name);
 
-            var ArtistImage = $("<img>");
+            var ArtistImage = $("<img id='artistImage'>");
             ArtistImage.attr("src", data.artist.image[3]["#text"]);
 
-            var Bio = $("<p>").text(data.artist.bio.summary);
+            var Bio = $("<p id='bio'>").text(data.artist.bio.summary);
             console.log("am i getting data",Bio)
 
-            var p = $("<p>").text(data.artist.tags.tag[0].name);
-            $("#lastFMData").append(name, ArtistImage, p, Bio);
+            var p = $("<mark id='tags'>").text(data.artist.tags.tag[0].name);
+            $("#lastFMData").append(ArtistImage, p, Bio);
         }    
 
     });    
@@ -167,8 +168,8 @@ function makeSecondCall(artistSearch) {
         success: function (data) {
             for(var i = 0; i < 4; i++){
                 console.log(data);
-            var topTracks = $("<p>").text(data.toptracks.track[i].name);
-            $("#lastFMData").append(data.toptracks.track[i].name);
+            var topTracks = $("<ul>").text(data.toptracks.track[i].name);
+            // $("#lastFMData").append("<li>" + data.toptracks.track[i].name + "</li>");
             }
         }    
     })    
