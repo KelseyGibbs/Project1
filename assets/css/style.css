@@ -1,5 +1,8 @@
-html, body {
+body {
     height: 100%;
+    background-image: url(../images/concert_crowd1.jpg);
+    background-size: cover; 
+    background-attachment: fixed;
 }
 
 .container {
@@ -7,16 +10,15 @@ html, body {
     
 }
 
-.bgimg {
-    background-image: url(../images/concert_crowd1.jpg);
+/* .bgimg {
+    
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; 
-    /* position: relative; */
+    position: relative;
     background-attachment: fixed;
-    /* opacity: 0.1; */
-}
+} */
 
 #logo {
     border: 5px solid #F26419;
@@ -50,7 +52,7 @@ label {
     margin: 10px;
 }
 
-#lastFMData, #ticketmasterData {
+#ticketText, #lastFMData, #ticketmasterData, #tracks {
     background-color: white;
     font-family: 'Roboto Condensed', sans-serif;
 }
@@ -69,9 +71,6 @@ label {
     font-size: 15px;
 }
 
-#tracks {
-    font-weight: bold;
-}
 
 #artistImage {
     float: left;
@@ -92,4 +91,3 @@ label {
     font-size: 20px;
     padding-left: 10px;
 }
-

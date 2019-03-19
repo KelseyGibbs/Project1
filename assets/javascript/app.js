@@ -166,10 +166,11 @@ function makeSecondCall(artistSearch) {
             'format=json',
         dataType: 'jsonp',    
         success: function (data) {
+            $("#tracks").append("<p>Top Tracks: </p>");
             for(var i = 0; i < 4; i++){
                 console.log(data);
-            var topTracks = $("<ul>").text(data.toptracks.track[i].name);
-            // $("#lastFMData").append("<li>" + data.toptracks.track[i].name + "</li>");
+            // var topTracks = $("#lastFMData").text(data.toptracks.track[i].name);
+            $("#tracks").append( "<li>" + data.toptracks.track[i].name + "</li>");
             }
         }    
     })    
