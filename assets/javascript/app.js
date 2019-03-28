@@ -23,7 +23,7 @@ $(document).ready(function () {
         var genreInput = $("#inputGenre").val().trim();
         var cityInput = $("#inputCity").val().trim();
 
-        var queryURL = "http://app.ticketmaster.com/discovery/v2/events.json?apikey=rbzvFPQuTHwPs9wYmrP99BX332WdMatP" +
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=rbzvFPQuTHwPs9wYmrP99BX332WdMatP" +
             "&classificationName=music" +
             "&city=" + cityInput +
             "&keyword=" + genreInput + ticketSearch;
@@ -113,7 +113,7 @@ function makeSecondCall(artistSearch) {
     console.log(artist + "hiiiiiii")
     $.ajax({
         type: 'POST',
-        url: 'http://ws.audioscrobbler.com/2.0/',
+        url: 'https://ws.audioscrobbler.com/2.0/',
         data: 'method=artist.getinfo&' +
             "artist=" + artist +
             '&getTopTags&' +
@@ -157,7 +157,7 @@ function makeSecondCall(artistSearch) {
     console.log(artist + " are we here?");
     $.ajax({
         type: 'POST',
-        url: 'http://ws.audioscrobbler.com/2.0/',
+        url: 'https://ws.audioscrobbler.com/2.0/',
         data: 'method=artist.gettoptracks&' +
             'artist=' + artist +
             '&getTopTags&' +
